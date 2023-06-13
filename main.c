@@ -100,7 +100,7 @@ void unpack(master_block_v4_t *master, char* input, char* output){
 		unsigned char * buffer = (unsigned char *) malloc (p->n_sectors * BLOCK_SIZE);
 		FILE *fp = fopen(input,"rb");
 		uint64_t total = (uint64_t)(p->start_lba * BLOCK_SIZE);
-		fseeko(fp,0x2000 + ((active) * 0x1000) + total,SEEK_SET);
+		fseeko(fp,0x2000 + ((active/0x80) * 0x1000) + total,SEEK_SET);
 		fread(buffer,(p->n_sectors * BLOCK_SIZE),1,fp);
 		fclose(fp);
 		FILE *fl = fopen(buffer2, "wb");
